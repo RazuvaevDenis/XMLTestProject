@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<university orderid="889923"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="test.xsd">
+<student>
+<firstname>Denis</firstname>
+<lastname>Ivanov</lastname>
+<age>20</age>
+<faculty>CSF</faculty>
+</student>
+<lecturer>
+<firstname>Petr</firstname>
+<lastname>Sidorov</lastname>
+<age>40</age>
+<science>chemistry</science>
+</lecturer>
+</university>

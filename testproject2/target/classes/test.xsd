@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="" xmlns="" elementFormDefault="qualified">
+<xs:element name="university">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="student" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="firstname" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:simpleContent>
+<xs:extension base="xs:string" />
+</xs:simpleContent>
+</xs:complexType>
+</xs:element>
+<xs:element name="lastname" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:simpleContent>
+<xs:extension base="xs:string" />
+</xs:simpleContent>
+</xs:complexType>
+</xs:element>
+<xs:element name="age" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:simpleContent>
+<xs:extension base="xs:string" />
+</xs:simpleContent>
+</xs:complexType>
+</xs:element>
+<xs:element name="faculty" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:simpleContent>
+<xs:extension base="xs:string" />
+</xs:simpleContent>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="lecturer" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="firstname" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:simpleContent>
+<xs:extension base="xs:string" />
+</xs:simpleContent>
+</xs:complexType>
+</xs:element>
+<xs:element name="lastname" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:simpleContent>
+<xs:extension base="xs:string" />
+</xs:simpleContent>
+</xs:complexType>
+</xs:element>
+<xs:element name="age" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:simpleContent>
+<xs:extension base="xs:string" />
+</xs:simpleContent>
+</xs:complexType>
+</xs:element>
+<xs:element name="science" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:simpleContent>
+<xs:extension base="xs:string" />
+</xs:simpleContent>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
