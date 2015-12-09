@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="" xmlns="" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="" elementFormDefault="qualified">
 <xs:element name="university">
 <xs:complexType>
 <xs:sequence>

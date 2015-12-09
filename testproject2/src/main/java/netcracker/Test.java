@@ -25,23 +25,33 @@ public class Test {
 
 	static ArrayList<Student> students=new ArrayList<Student>();
 	static ArrayList<Lecturer> lecturers=new ArrayList<Lecturer>();
-	public static void main(String[] args) {
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder;
-		try {
-		dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(new File("src/main/resources/test.xml"));
-		doc.getDocumentElement().normalize();
+	
+	public static void PrintStudents(ArrayList<Student> students, Logger log){
+		for (int i=0;i<students.size();i++){
+       	 Student s=students.get(i);
+       	 log.log(Level.INFO, s.getName() + " " + s.getSurname() + " " + s.getAge() + " " + s.faculty());
+        }
+	}
+	public static void PrintLecturers(ArrayList<Lecturer> lecturers, Logger log){
+        for(int i=0;i<lecturers.size();i++){
+       	 Lecturer l=lecturers.get(i);
+       	 log.log(Level.INFO, l.getName() + " " + l.getSurname() + " " + l.getAge() + " " + l.science());
+        }
+	}
+	public static void XPathParse(Document doc) throws XPathExpressionException{
 		XPathFactory factory=XPathFactory.newInstance();
 		XPath path=factory.newXPath();
 		XPathExpression expr=path.compile("//student[faculty='CSF']/firstname/text()");
+		doc.getDocumentElement().normalize();
 		Object oList1=expr.evaluate(doc, XPathConstants.NODESET);
 		NodeList nList1=(NodeList)oList1;
-		NodeList nList2=doc.getElementsByTagName("lecturer");
 		for(int temp=0;temp<nList1.getLength();temp++){
 			Student s=new CSFStudent((nList1.item(temp).getNodeValue()),"Ivanov",20);
 			students.add(s);
 		}
+	}
+	public static void DOMParse(Document doc){
+		NodeList nList2=doc.getElementsByTagName("lecturer");
 		for(int temp=0;temp<nList2.getLength();temp++){
 			Node nNode=nList2.item(temp);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -54,30 +64,28 @@ public class Test {
 				lecturers.add(l);
 			}
 		}
-         for (int i=0;i<students.size();i++){
-        	 Student s=students.get(i);
-        	 System.out.println(s.getName());
-        	 System.out.println(s.getSurname());
-        	 System.out.println(s.getAge());
-        	 System.out.println(s.getPosition());
-        	 System.out.println(s.faculty());
-         }
-         for(int i=0;i<lecturers.size();i++){
-        	 Lecturer l=lecturers.get(i);
-        	 System.out.println(l.getName());
-        	 System.out.println(l.getSurname());
-        	 System.out.println(l.getAge());
-        	 System.out.println(l.getPosition());
-        	 System.out.println(l.science());
-         }
+	}
+	public static void main(String[] args) {
+		DOMConfigurator.configure("src/main/resources/log4j.xml");
+		Logger log=Logger.getLogger(Test.class);
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		try {
+		dBuilder = dbFactory.newDocumentBuilder();
+		Document doc = dBuilder.parse(new File("src/main/resources/test.xml"));
+		doc.getDocumentElement().normalize();
+		XPathParse(doc);
+		DOMParse(doc);
+        PrintStudents(students,log);
+        PrintLecturers(lecturers,log);
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
+			log.log(Level.ERROR, "Error in parser configuration");
 		} catch (SAXException e) {
-			e.printStackTrace();
+			log.log(Level.ERROR, "Error in SAX");
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.log(Level.ERROR, "Error in documents");
 		} catch (XPathExpressionException e) {
-			e.printStackTrace();
+			log.log(Level.ERROR, "Error in XPath expression");
 		}
 	}
 }

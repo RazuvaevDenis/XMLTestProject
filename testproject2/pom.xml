@@ -7,23 +7,24 @@
   <name>testproject2</name>
   <url>http://maven.apache.org</url>
   <build>
-  <plugins>
-  <plugin>
-<groupId>org.apache.maven.plugins</groupId>
-<artifactId>maven-jar-plugin</artifactId>
-<version>2.4</version>
-<configuration>
-<archive>
-  <manifest>
-  <addClasspath>true</addClasspath>
-  <classpathPrefix>lib</classpathPrefix>
-  <mainClass>netcracker.Test</mainClass>
-  </manifest>
-  </archive>
-  </configuration>
-  </plugin>
-  </plugins>
-  </build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib</classpathPrefix>
+                            <mainClass>netcracker.Test</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
